@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Biodata</title>
+    
+    <style>
+        body {
+            /* Menggunakan latar belakang gambar dengan posisi tetap */
+            background-image: url("https://images.unsplash.com/photo-1519681393784-d120267933ba");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            /* Kotak putih semi-transparan agar teks mudah dibaca */
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px; /* Sudut melengkung */
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Efek bayangan */
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #2c3e50; /* Garis bawah judul */
+            padding-bottom: 10px;
+        }
+
+        .judul {
+            font-weight: bold;
+            color: #2c3e50;
+            cursor: pointer;
+            margin-top: 20px;
+            background: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .sinopsis {
+            /* Kontainer teks yang bisa disembunyikan/dimunculkan */
+            display: none; 
+            text-align: left;
+            margin-top: 10px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Biodata Saya</h1>
+        
+        <p>Nama: <strong>Budi Santoso</strong></p>
+        <p>Pekerjaan: Web Developer</p>
+
+        <p class="judul" data-target="info-lebih">Klik untuk Info Lebih Lanjut</p>
+        
+        <div id="info-lebih" class="sinopsis">
+            <p><strong>Hobi:</strong> Coding, Membaca Komik Eleceed, dan Traveling.</p>
+            <p><strong>Keahlian:</strong> HTML, CSS, dan JavaScript.</p>
+            <p><strong>Motto:</strong> Terus belajar setiap hari agar menjadi lebih baik.</p>
+        </div>
+    </div>
+
+    <script>
+        // Logika untuk buka/tutup info tambahan saat diklik
+        document.querySelectorAll(".judul").forEach(judul => {
+            judul.addEventListener("click", () => {
+                const targetId = judul.dataset.target; // Mengambil ID target
+                const sinopsis = document.getElementById(targetId); // Mencari elemen
+                
+                // Cek status display untuk toggle
+                if (sinopsis.style.display === "none" || sinopsis.style.display === "") {
+                    sinopsis.style.display = "block";
+                } else {
+                    sinopsis.style.display = "none";
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
