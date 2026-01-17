@@ -7,52 +7,80 @@
     
     <style>
         body {
-            /* Menggunakan latar belakang gambar dengan posisi tetap */
-            background-image: url("https://images.unsplash.com/photo-1519681393784-d120267933ba");
+            margin: 0;
+            padding: 40px;
+            /* Menggunakan gambar yang sama dengan index.html */
+            background-image: url("img/gambar.jpg");
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
             background-attachment: fixed;
             font-family: Arial, sans-serif;
+            color: #333;
+            /* Menengahkah konten secara vertikal dan horizontal */
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            margin: 0;
         }
 
         .container {
-            /* Kotak putih semi-transparan agar teks mudah dibaca */
-            background-color: rgba(255, 255, 255, 0.9);
+            /* Transparansi 0.8 agar sama persis dengan index.html */
+            background-color: rgba(255, 255, 255, 0.8); 
             padding: 30px;
-            border-radius: 15px; /* Sudut melengkung */
+            border-radius: 10px;
             max-width: 500px;
-            width: 90%;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Efek bayangan */
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             text-align: center;
         }
 
         h1 {
-            color: #2c3e50;
-            border-bottom: 2px solid #2c3e50; /* Garis bawah judul */
-            padding-bottom: 10px;
+            color: #2c3e50; /* Warna biru gelap konsisten */
+            margin-bottom: 20px;
         }
 
-        .judul {
+        .info-teks {
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        /* Gaya tombol yang sama dengan index.html */
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #34495e;
+        }
+
+        /* Gaya khusus untuk fitur klik info lanjut */
+        .judul-klik {
             font-weight: bold;
             color: #2c3e50;
             cursor: pointer;
             margin-top: 20px;
-            background: #ecf0f1;
+            background: rgba(44, 62, 80, 0.1);
             padding: 10px;
             border-radius: 5px;
         }
 
-        .sinopsis {
-            /* Kontainer teks yang bisa disembunyikan/dimunculkan */
+        .konten-rahasia {
             display: none; 
             text-align: left;
             margin-top: 10px;
             line-height: 1.6;
+            padding: 10px;
+            border-left: 3px solid #2c3e50;
         }
     </style>
 </head>
@@ -61,33 +89,35 @@
     <div class="container">
         <h1>Biodata Saya</h1>
         
-        <p>Nama: <strong>Muhammad Dzaky Pratama</strong></p>
-        <p>Pekerjaan: Mahasiswa</p>
+        <div class="info-teks">
+            <p>Nama: <strong>Muhammad Dzaky Pratama</strong></p>
+            <p>Pekerjaan: Mahasiswa</p>
+        </div>
 
-        <p class="judul" data-target="info-lebih">Klik untuk Info Lebih Lanjut</p>
+        <p class="judul-klik" data-target="info-lebih">Klik untuk Info Lebih Lanjut</p>
         
-        <div id="info-lebih" class="sinopsis">
+        <div id="info-lebih" class="konten-rahasia">
             <p><strong>Hobi:</strong> Coding, Baca Komik, dan Ngelamunn.</p>
             <p><strong>Keahlian:</strong> Intinya jago bet gwehj.</p>
             <p><strong>Motto:</strong> KODING SUSAH BETT PAKKKK.</p>
         </div>
-         <button onclick="window.location.href='index.html'">
-             Kembali ke Beranda
+
+        <button onclick="window.location.href='index.html'">
+            Kembali ke Beranda
         </button>
     </div>
 
     <script>
-        // Logika untuk buka/tutup info tambahan saat diklik
-        document.querySelectorAll(".judul").forEach(judul => {
+        // Script untuk buka/tutup info (Toggle)
+        document.querySelectorAll(".judul-klik").forEach(judul => {
             judul.addEventListener("click", () => {
-                const targetId = judul.dataset.target; // Mengambil ID target
-                const sinopsis = document.getElementById(targetId); // Mencari elemen
+                const targetId = judul.dataset.target;
+                const targetElement = document.getElementById(targetId);
                 
-                // Cek status display untuk toggle
-                if (sinopsis.style.display === "none" || sinopsis.style.display === "") {
-                    sinopsis.style.display = "block";
+                if (targetElement.style.display === "none" || targetElement.style.display === "") {
+                    targetElement.style.display = "block";
                 } else {
-                    sinopsis.style.display = "none";
+                    targetElement.style.display = "none";
                 }
             });
         });
